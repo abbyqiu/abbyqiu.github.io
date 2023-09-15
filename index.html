@@ -5,59 +5,59 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>下班倒计时</title>
-        <script>
-            // 获取当前时间
-            var now = new Date();
-            var currentHour = now.getHours();
-            var currentMinute = now.getMinutes();
-            var currentSecond = now.getSeconds();
-
-            // 设置下班时间（假设为18:00:00）
-            var targetHour = 17;
-            var targetMinute = 30;
-            var targetSecond = 0;
-
-            // 计算剩余时间
-            var remainingHour = targetHour - currentHour;
-            var remainingMinute = targetMinute - currentMinute;
-            var remainingSecond = targetSecond - currentSecond;
-
-            // 处理倒计时的逻辑
-            function countdown() {
-                remainingSecond--;
-                if (remainingSecond < 0) {
-                    remainingMinute--;
-                    remainingSecond = 59;
-                }
-                if (remainingMinute < 0) {
-                    remainingHour--;
-                    remainingMinute = 59;
-                }
-                if (remainingHour < 0) {
-                    remainingHour = 0;
-                    remainingMinute = 0;
-                    remainingSecond = 0;
-                }
-
-                // 更新倒计时显示
-                document.getElementById("timer").innerHTML =
-                    remainingHour +
-                    "小时 " +
-                    remainingMinute +
-                    "分钟 " +
-                    remainingSecond +
-                    "秒";
-
-                // 每秒钟调用一次countdown函数
-                setTimeout(countdown, 1000);
+        <style>
+            .countdown {
+                font-size: 24px;
+                text-align: center;
+                margin-top: 50px;
             }
-
-            // 页面加载完成后开始倒计时
-            window.onload = countdown;
-        </script>
+        </style>
     </head>
     <body>
         <h1>下班倒计时</h1>
-        <p id="timer"></p>
+        <div class="countdown" id="timer"></div>
+
+        <script>
+            // 设置下班时间（假设为18:00:00）
+            var targetTime = new Date();
+            targetTime.setHours(17);
+            targetTime.setMinutes(30);
+            targetTime.setSeconds(0);
+
+            // 更新倒计时显示
+            function updateCountdown() {
+                var currentTime = new Date();
+                var remainingTime = targetTime - currentTime;
+
+                // 计算剩余小时、分钟和秒数
+                var remainingHours = Math.floor(
+                    remainingTime / (1000 * 60 * 60)
+                );
+                var remainingMinutes = Math.floor(
+                    (remainingTime % (1000 * 60 * 60)) / (1000 * 60)
+                );
+                var remainingSeconds = Math.floor(
+                    (remainingTime % (1000 * 60)) / 1000
+                );
+
+                // 格式化显示
+                var countdown =
+                    remainingHours +
+                    "小时 " +
+                    remainingMinutes +
+                    "分钟 " +
+                    remainingSeconds +
+                    "秒";
+
+                // 更新倒计时显示
+                document.getElementById("timer").innerHTML = countdown;
+
+                // 每秒钟调用一次updateCountdown函数
+                setTimeout(updateCountdown, 1000);
+            }
+
+            // 页面加载完成后开始倒计时
+            window.onload = updateCountdown;
+        </script>
     </body>
 </html>
