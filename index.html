@@ -1,12 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1 style="text-align: center;padding-top: 20px;">testaaa</h1>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>下班倒计时</title>
+        <script>
+            // 获取当前时间
+            var now = new Date();
+            var currentHour = now.getHours();
+            var currentMinute = now.getMinutes();
+            var currentSecond = now.getSeconds();
+
+            // 设置下班时间（假设为18:00:00）
+            var targetHour = 17;
+            var targetMinute = 30;
+            var targetSecond = 0;
+
+            // 计算剩余时间
+            var remainingHour = targetHour - currentHour;
+            var remainingMinute = targetMinute - currentMinute;
+            var remainingSecond = targetSecond - currentSecond;
+
+            // 处理倒计时的逻辑
+            function countdown() {
+                remainingSecond--;
+                if (remainingSecond < 0) {
+                    remainingMinute--;
+                    remainingSecond = 59;
+                }
+                if (remainingMinute < 0) {
+                    remainingHour--;
+                    remainingMinute = 59;
+                }
+                if (remainingHour < 0) {
+                    remainingHour = 0;
+                    remainingMinute = 0;
+                    remainingSecond = 0;
+                }
+
+                // 更新倒计时显示
+                document.getElementById("timer").innerHTML =
+                    remainingHour +
+                    "小时 " +
+                    remainingMinute +
+                    "分钟 " +
+                    remainingSecond +
+                    "秒";
+
+                // 每秒钟调用一次countdown函数
+                setTimeout(countdown, 1000);
+            }
+
+            // 页面加载完成后开始倒计时
+            window.onload = countdown;
+        </script>
+    </head>
+    <body>
+        <h1>下班倒计时</h1>
+        <p id="timer"></p>
+    </body>
 </html>
