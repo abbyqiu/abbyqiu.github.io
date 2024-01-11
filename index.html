@@ -31,8 +31,8 @@
     <div class="jz" id="jzyearOver"></div>
     <script>
       // 设置过年的日期
-      const lunarNewYearDate = new Date("2024-02-09T17:30:00");
-      const jzDate = new Date("2024-03-08T17:30:00");
+      const lunarNewYearDate = new Date("2024-02-09T17:30:00").getTime();
+      const jzDate = new Date("2024-03-08T17:30:00").getTime();
 
       // 设置下班时间（假设为18:00:00）
       var targetTime = new Date();
@@ -68,6 +68,7 @@
 
         // 计算剩余天数、小时、分钟和秒
         const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const jzdays = Math.floor(jzRemaining / (1000 * 60 * 60 * 24));
         const hours = Math.floor(
           (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
         );
@@ -77,18 +78,8 @@
         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
         const lastTimeString = `距离过年【下班】还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
-
-        // 计算剩余天数、小时、分钟和秒
-        const jzdays = Math.floor(jzDate / (1000 * 60 * 60 * 24));
-        const jzhours = Math.floor(
-          (jzDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const jzminutes = Math.floor(
-          (jzDate % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        const jzseconds = Math.floor((jzDate % (1000 * 60)) / 1000);
         
-        const jzlastTimeString = `倒计时： ${jzdays} 天 ${jzhours} 小时 ${jzminutes} 分钟 ${jzseconds} 秒`;
+        const jzlastTimeString = `倒计时： ${jzdays} 天`;
         // 输出剩余时间
         // console.log(
         //   `距离过年下班还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`
