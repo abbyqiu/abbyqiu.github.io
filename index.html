@@ -16,15 +16,23 @@
         text-align: center;
         margin-top: 50px;
       }
+      .jz{
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
     </style>
   </head>
   <body>
     <h1></h1>
     <div class="countdown" id="timer"></div>
     <div class="year" id="yearOver"></div>
+    <div class="jz" id="jzyearOver"></div>
     <script>
       // 设置过年的日期
       const lunarNewYearDate = new Date("2024-02-09T17:30:00");
+      const jzDate = new Date("2024-03-08T17:30:00");
 
       // 设置下班时间（假设为18:00:00）
       var targetTime = new Date();
@@ -56,6 +64,7 @@
 
         // 计算剩余时间
         const timeRemaining = lunarNewYearDate - now;
+        const jzRemaining = jzDate - now;
 
         // 计算剩余天数、小时、分钟和秒
         const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
@@ -66,7 +75,20 @@
           (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
         );
         const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
         const lastTimeString = `距离过年【下班】还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+
+        // 计算剩余天数、小时、分钟和秒
+        const jzdays = Math.floor(jzDate / (1000 * 60 * 60 * 24));
+        const jzhours = Math.floor(
+          (jzDate % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const jzminutes = Math.floor(
+          (jzDate % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const jzseconds = Math.floor((jzDate % (1000 * 60)) / 1000);
+        
+        const jzlastTimeString = `倒计时： ${jzdays} 天 ${jzhours} 小时 ${jzminutes} 分钟 ${jzseconds} 秒`;
         // 输出剩余时间
         // console.log(
         //   `距离过年下班还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`
@@ -75,6 +97,7 @@
         // 更新倒计时显示
         document.getElementById("timer").innerHTML = countdown;
         document.getElementById("yearOver").innerHTML = lastTimeString;
+        document.getElementById("jzyearOver").innerHTML = jzlastTimeString;
         // 每秒钟调用一次updateCountdown函数
         setTimeout(updateCountdown, 1000);
       }
