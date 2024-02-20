@@ -27,12 +27,12 @@
   <body>
     <h1></h1>
     <div class="countdown" id="timer"></div>
-    <div class="year" id="yearOver"></div>
+    <!-- <div class="year" id="yearOver"></div> -->
     <div class="jz" id="jzyearOver"></div>
     <script>
       // 设置过年的日期
       const lunarNewYearDate = new Date("2024-02-09T17:30:00").getTime();
-      const jzDate = new Date("2024-09-15T17:30:00").getTime();
+      const jzDate = new Date("2024-12-31T23:59:59").getTime();
 
       // 设置下班时间（假设为18:00:00）
       var targetTime = new Date();
@@ -79,7 +79,7 @@
 
         const lastTimeString = `距离过年【下班】还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
         
-        const jzlastTimeString = `倒计时： ${jzdays} 天`;
+        const jzlastTimeString = `2024年倒计时： ${jzdays} 天`;
         // 输出剩余时间
         // console.log(
         //   `距离过年下班还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`
@@ -87,7 +87,7 @@
 
         // 更新倒计时显示
         document.getElementById("timer").innerHTML = countdown;
-        document.getElementById("yearOver").innerHTML = lastTimeString;
+        // document.getElementById("yearOver").innerHTML = lastTimeString;
         document.getElementById("jzyearOver").innerHTML = jzlastTimeString;
         // 每秒钟调用一次updateCountdown函数
         setTimeout(updateCountdown, 1000);
