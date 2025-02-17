@@ -1,33 +1,27 @@
-// 下班时间（例如，下午5点）
-const workdayEndTime = new Date();
-workdayEndTime.setHours(17, 0, 0, 0); // 设置为下午5点
+function updateCountdownDisplay(endDate, displayElementId) {
+    const countDownDate = new Date(endDate).getTime();
+    const now = new Date().getTime();
+    const distance = countDownDate - now;
  
-// 元旦时间（例如，2024年1月1日）
-const newYearDate = new Date('2024-01-01T00:00:00');
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
  
-function updateCountdown(elementId, endTime) {
-    const countdownElement = document.getElementById(elementId);
-    const currentTime = new Date();
-    const timeRemaining = endTime - currentTime;
+    document.getElementById(displayElementId).innerHTML = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
  
-    if (timeRemaining > 0) {
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
- 
-        countdownElement.innerHTML = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
-    } else {
-        countdownElement.innerHTML = '时间到！';
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById(displayElementId).innerHTML = "时间到！";
     }
 }
  
-// 设置下班倒计时每秒更新一次
-setInterval(function() {
-    updateCountdown('workdayCountdown', workdayEndTime);
-}, 1000);
+// 获取当前年份，用于元旦的日期计算
+const currentYear = new Date().getFullYear();
+const workEndDate = `${currentYear}-12-31 18:00:00`; // 假设下班时间是12月31日18:00
+const newYearDate = `${currentYear + 1}-01-01 00:00:00`; // 元旦是新年的第一天，即下一年的1月1日午夜
  
-// 设置元旦倒计时每秒更新一次
-setInterval(function() {
-    updateCountdown('newYearCountdown', newYearDate);
-}, 1000);
+// 设置下班倒计时
+updateCountdownDisplay(workEndDate, 'workEndCountdown');
+// 设置元旦倒计时
+updateCountdownDisplay(newYearDate, 'newYearCountdown');
