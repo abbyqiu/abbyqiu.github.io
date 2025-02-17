@@ -33,9 +33,10 @@
       // 设置过年的日期
       const lunarNewYearDate = new Date("2024-02-09T17:30:00").getTime();
       const jzDate = new Date("2024-12-31T23:59:59").getTime();
-      const newYear = new Date(now.getFullYear(), 0, 1)
+      
       // 设置下班时间
       var targetTime = new Date();
+      const newYear = new Date(targetTime.getFullYear(), 0, 1)
       targetTime.setHours(17);
       targetTime.setMinutes(30);
       targetTime.setSeconds(0);
