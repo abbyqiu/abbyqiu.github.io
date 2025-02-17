@@ -33,8 +33,8 @@
       // 设置过年的日期
       const lunarNewYearDate = new Date("2024-02-09T17:30:00").getTime();
       const jzDate = new Date("2024-12-31T23:59:59").getTime();
-
-      // 设置下班时间（假设为18:00:00）
+      const newYear = new Date(now.getFullYear(), 0, 1)
+      // 设置下班时间
       var targetTime = new Date();
       targetTime.setHours(17);
       targetTime.setMinutes(30);
@@ -79,7 +79,7 @@
 
         const lastTimeString = `距离过年【下班】还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
         
-        const jzlastTimeString = `2024年倒计时： ${jzdays} 天`;
+        const jzlastTimeString = `${newYear}年倒计时： ${jzdays} 天`;
         // 输出剩余时间
         // console.log(
         //   `距离过年下班还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`
