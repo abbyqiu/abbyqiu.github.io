@@ -46,6 +46,11 @@
         var currentTime = new Date();
         var remainingTime = targetTime - currentTime;
         const newYear = new Date( currentTime.getFullYear(), 0, 1)
+        if (now >= newYear.getTime()) {
+            newYear.setFullYear(now.getFullYear() + 1);
+        }
+        const diffTime = newYear.getTime() - now.getTime();
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         // 计算剩余小时、分钟和秒数
         var remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
         var remainingMinutes = Math.floor(
@@ -79,7 +84,7 @@
 
         const lastTimeString = `距离过年【下班】还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
         
-        const jzlastTimeString = `【${newYear}年倒计时： ${jzdays} 天】`;
+        const jzlastTimeString = `【${currentTime.getFullYear()}年倒计时： ${diffDays} 天】`;
         // 输出剩余时间
         // console.log(
         //   `距离过年下班还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`
