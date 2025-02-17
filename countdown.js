@@ -1,5 +1,4 @@
 function updateCountdownDisplay(endDate, displayElementId, type) {
-    console.log(`类型:${type}-----时间:${endDate}`)
     const countDownDate = new Date(endDate).getTime();
     const now = new Date().getTime();
     const distance = countDownDate - now;
@@ -9,7 +8,7 @@ function updateCountdownDisplay(endDate, displayElementId, type) {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
  
-    document.getElementById(displayElementId).innerHTML = `${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
+    document.getElementById(displayElementId).innerHTML = `类型:${type}-----时间:${endDate}-------------------------${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
 }
  
 // 获取当前年份，用于元旦的日期计算
