@@ -1,105 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
     <title>时间显示</title>
-    <style>
-      .countdown {
-        font-size: 24px;
-        text-align: center;
-        margin-top: 50px;
-      }
-      .year{
-        font-size: 24px;
-        text-align: center;
-        margin-top: 50px;
-      }
-      .jz{
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-    </style>
-  </head>
-  <body>
-    <h1></h1>
-    <div class="countdown" id="timer"></div>
-    <!-- <div class="year" id="yearOver"></div> -->
-    <div class="jz" id="jzyearOver"></div>
-    <script>
-      // 设置过年的日期
-      const lunarNewYearDate = new Date("2024-02-09T17:30:00").getTime();
-      const jzDate = new Date("2024-12-31T23:59:59").getTime();
-      
-      // 设置下班时间
-      var targetTime = new Date();
-      targetTime.setHours(17);
-      targetTime.setMinutes(30);
-      targetTime.setSeconds(0);
-
-      // 更新倒计时显示
-      function updateCountdown() {
-        const now = new Date().getTime();
-        var currentTime = new Date();
-        var remainingTime = targetTime - currentTime;
-        const newYear = new Date( currentTime.getFullYear(), 0, 1)
-        if (now >= newYear.getTime()) {
-            newYear.setFullYear(now.getFullYear() + 1);
-        }
-        const diffTime = newYear.getTime() - now.getTime();
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        // 计算剩余小时、分钟和秒数
-        var remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
-        var remainingMinutes = Math.floor(
-          (remainingTime % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        var remainingSeconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-
-        // 格式化显示
-        var countdown =
-          remainingHours +
-          "小时 " +
-          remainingMinutes +
-          "分钟 " +
-          remainingSeconds +
-          "秒";
-
-        // 计算剩余时间
-        const timeRemaining = lunarNewYearDate - now;
-        const jzRemaining = jzDate - now;
-
-        // 计算剩余天数、小时、分钟和秒
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const jzdays = Math.floor(jzRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor(
-          (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
-        );
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        const lastTimeString = `距离过年【下班】还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
-        
-        const jzlastTimeString = `【${currentTime.getFullYear()}年倒计时： ${diffDays} 天】`;
-        // 输出剩余时间
-        // console.log(
-        //   `距离过年下班还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`
-        // );
-
-        // 更新倒计时显示
-        document.getElementById("timer").innerHTML = countdown;
-        // document.getElementById("yearOver").innerHTML = lastTimeString;
-        document.getElementById("jzyearOver").innerHTML = jzlastTimeString;
-        // 每秒钟调用一次updateCountdown函数
-        setTimeout(updateCountdown, 1000);
-      }
-
-      // 页面加载完成后开始倒计时
-      window.onload = updateCountdown;
-    </script>
-  </body>
+</head>
+<body>
+    <div id="workdayCountdown"></div>
+    <div id="newYearCountdown"></div>
+ 
+    <script src="countdown.js"></script>
+</body>
 </html>
