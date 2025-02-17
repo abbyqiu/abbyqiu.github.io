@@ -1,5 +1,5 @@
 function updateCountdownDisplay(endDate, displayElementId, type) {
-    console.log(`类型:${type}----时间:${endDate}`)
+    console.log(`类型:${type}-----时间:${endDate}`)
     const countDownDate = new Date(endDate).getTime();
     const now = new Date().getTime();
     const distance = countDownDate - now;
