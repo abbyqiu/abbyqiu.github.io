@@ -9,8 +9,7 @@ function updateCountdownDisplay(endDate, displayElementId, type) {
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     if(type === 1){
-        const timeStr = seconds < 0 ? `--小时 --分钟 --秒` : `${hours}小时 ${minutes}分钟 ${seconds}秒`
-        document.getElementById(displayElementId).innerHTML = `距离下班还有：${timeStr}`;
+        document.getElementById(displayElementId).innerHTML = seconds < 0 ? `下班啦 ~` : `距离下班还有：${hours}小时 ${minutes}分钟 ${seconds}秒`;
     }else if (type === 2) {
         // document.getElementById(displayElementId).innerHTML = `今年还有：${days}天 ${hours}小时 ${minutes}分钟 ${seconds}秒`;
         document.getElementById(displayElementId).innerHTML = `${nowYear}年还剩下：${days}天`;
