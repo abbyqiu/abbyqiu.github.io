@@ -36,7 +36,6 @@
       
       // 设置下班时间
       var targetTime = new Date();
-      const newYear = new Date(targetTime.getFullYear(), 0, 1)
       targetTime.setHours(17);
       targetTime.setMinutes(30);
       targetTime.setSeconds(0);
@@ -46,7 +45,7 @@
         const now = new Date().getTime();
         var currentTime = new Date();
         var remainingTime = targetTime - currentTime;
-
+        const newYear = new Date( currentTime.getFullYear(), 0, 1)
         // 计算剩余小时、分钟和秒数
         var remainingHours = Math.floor(remainingTime / (1000 * 60 * 60));
         var remainingMinutes = Math.floor(
