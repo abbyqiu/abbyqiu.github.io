@@ -30,7 +30,11 @@ const currentDay = new Date().getDate();
 const workEndDate = `${currentYear}-${currentMonth}-${currentDay} 17:30:00`;
 const newYearDate = `${currentYear}-12-31 17:30:00`;
 const WeddingDate = "2025-05-11 00:00:00";
-// 设置下班倒计时
-updateCountdownDisplay(workEndDate, "workEndCountdown", 1);
-// 设置元旦倒计时
-updateCountdownDisplay(newYearDate, "newYearCountdown", 2);
+// 设置下班倒计时定时器
+setInterval(() => {
+  updateCountdownDisplay(workEndDate, "workEndCountdown", 1);
+}, 1000);
+// 设置元旦倒计时定时器
+setInterval(() => {
+  updateCountdownDisplay(newYearDate, "newYearCountdown", 2);
+}, 1000);
